@@ -3,6 +3,7 @@ import throttle from "lodash.throttle"
 const form = document.querySelector('.feedback-form')
 const email = form.email
 const message = form.message
+const STORAGE_KEY = "feedback-form-state"
 
 function onFormInput(evt) {
     const formData =  {
@@ -10,7 +11,7 @@ function onFormInput(evt) {
         message: message.value
     }
     const formDataStringified = JSON.stringify(formData)
-    localStorage.setItem("feedback-form-state", formDataStringified)
+    localStorage.setItem(STORAGE_KEY, formDataStringified)
 }
 
 const throttledOnFormInput = throttle(onFormInput, 500)
@@ -22,11 +23,11 @@ function onFormSubmit(evt) {
         message: message.value
     })
     evt.currentTarget.reset()
-    localStorage.removeItem("feedback-form-state")
+    localStorage.removeItem(STORAGE_KEY)
 }
 
 function populateFormInputs() {
-    const savedInputs = JSON.parse(localStorage.getItem("feedback-form-state"))
+    const savedInputs = JSON.parse(localStorage.getItem(STORAGE_KEY))
     if(savedInputs) {
         email.value = savedInputs.email
         message.value = savedInputs.message
