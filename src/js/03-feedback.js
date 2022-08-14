@@ -22,7 +22,7 @@ function onFormSubmit(evt) {
         message: message.value
     })
     evt.currentTarget.reset()
-    localStorage.clear()
+    localStorage.removeItem("feedback-form-state")
 }
 
 function populateFormInputs() {
