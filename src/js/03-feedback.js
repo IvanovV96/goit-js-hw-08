@@ -21,7 +21,7 @@ function onFormSubmit(evt) {
     if(email.value === '' || message.value === '') {
         console.log('Fill all inputs, please')
     } else {
-    console.log(formData)
+    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)))
     }
     evt.currentTarget.reset()
     localStorage.removeItem(STORAGE_KEY)
