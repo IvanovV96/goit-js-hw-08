@@ -4,10 +4,12 @@ const form = document.querySelector('.feedback-form')
 const email = form.email
 const message = form.message
 const STORAGE_KEY = "feedback-form-state"
-const formData = {}
-
-function onFormInput(evt) {
-    formData[evt.target.name] = evt.target.value
+let formData = {}
+function onFormInput() {
+    formData = {
+        email: email.value,
+        message: message.value
+    }
     const formDataStringified = JSON.stringify(formData)
     localStorage.setItem(STORAGE_KEY, formDataStringified)
 }
